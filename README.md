@@ -59,7 +59,9 @@ We assume you already have the following installed already:
     you installed Postgres, the `createdb` tool may not be in your PATH. If you
     installed Postgres.app, you can point directly at
     `/Applications/Postgres.app/Contents/Versions/latest/bin/createdb`)
-  * Run the setup script: `rake db:seed`
+  * Run `bundle install`
+  * Run the initial migration: `rake db:migrate`
+  * Seed your database: `rake db:seed`
   * Start the server: `rails s`
   * Navigate to http://localhost:3000/customers to see the agent
   interface.
