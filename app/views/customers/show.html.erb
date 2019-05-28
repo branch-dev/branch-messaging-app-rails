@@ -1,0 +1,29 @@
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<ul>
+  <% @customer.messages.each do |message| %>
+    <li>
+      <%= message.created_at %>
+      <% if message.agent %>
+        <%= "#{message.agent.name} (Agent)" %>
+      <% else %>
+        <%= "#{message.customer.name} (Customer)" %>
+      <% end %>
+
+      <%= message.body %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_with url: send_message_customer_path, method: :post do |form| %>
+
+  <%= form.label :message, "Enter message here..." %><br>
+  <%= form.text_field :message %>
+
+  <%= form.select :agent, @agents.map { |agent| [agent.name, agent.id] } %>
+
+  <%= form.submit %>
+<% end %>
+

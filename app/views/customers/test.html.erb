@@ -1,0 +1,16 @@
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_with url: test_customers_path, method: :post do |form| %>
+  <br>
+  <%= form.label :message, "Enter message here..." %>
+  <%= form.text_field :message %>
+  <br>
+  <%= form.label :customer_name, "Name (if new customer)" %>
+  <%= form.text_field :customer_name %>
+
+  <%= form.select :customer_id, [["New customer ", nil]] + @customers.map { |customer| [customer.name, customer.id] } %>
+
+  <%= form.submit %>
+<% end %>
